@@ -54,8 +54,8 @@ This project was designed with multiple layers of security to protect the authen
 ## Authentication Flow
 
 The application follows a token-based authentication flow using JWT access tokens and rotating refresh tokens.
-
-## 1. Registration
+```
+1. Registration
 
 User submits their email and password.
 
@@ -141,7 +141,7 @@ Set New Password
 Hash New Password with bcrypt
  ↓
 Update Account
-
+```
 
 ## Testing & Security Validation
 
