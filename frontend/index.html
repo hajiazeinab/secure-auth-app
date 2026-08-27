@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vault — Secure Access</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scene">
+    <header class="brand">
+      <span class="brand-mark">&#9670;</span>
+      <span class="brand-name">VAULT</span>
+    </header>
+
+    <main class="panel">
+      <div class="readout" id="readout">
+        <span class="readout-dot" id="readoutDot"></span>
+        <span class="readout-label">ACCESS</span>
+        <span class="readout-value" id="readoutValue">NONE</span>
+      </div>
+
+      <section class="card" id="authCard">
+        <div class="tabs">
+          <button class="tab active" data-tab="login" type="button">Log in</button>
+          <button class="tab" data-tab="register" type="button">Register</button>
+        </div>
+
+        <form id="loginForm" class="form" data-form="login">
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Password<input type="password" name="password" required autocomplete="current-password" /></label>
+          <button type="submit" class="btn-primary">Log in</button>
+          <button type="button" class="link-btn" data-goto="resetRequest">Forgot password?</button>
+        </form>
+
+        <form id="registerForm" class="form hidden" data-form="register">
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Password<input type="password" name="password" required autocomplete="new-password" /></label>
+          <p class="hint">10+ characters, upper &amp; lower case, a number, a symbol.</p>
+          <button type="submit" class="btn-primary">Create account</button>
+        </form>
+
+        <form id="resetRequestForm" class="form hidden" data-form="resetRequest">
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <button type="submit" class="btn-primary">Send reset link</button>
+          <button type="button" class="link-btn" data-goto="login">Back to login</button>
+        </form>
+
+        <form id="resetConfirmForm" class="form hidden" data-form="resetConfirm">
+          <label>Reset token<input type="text" name="token" required /></label>
+          <label>New password<input type="password" name="password" required autocomplete="new-password" /></label>
+          <button type="submit" class="btn-primary">Reset password</button>
+          <button type="button" class="link-btn" data-goto="login">Back to login</button>
+        </form>
+
+        <p class="status-msg" id="statusMsg"></p>
+      </section>
+
+      <section class="card hidden" id="dashboard">
+        <p class="eyebrow">Session</p>
+        <div class="dash-row"><span class="dash-label">Email</span><span id="dashEmail">—</span></div>
+        <div class="dash-row"><span class="dash-label">Verified</span><span id="dashVerified">—</span></div>
+        <div class="dash-row"><span class="dash-label">Member since</span><span id="dashCreated">—</span></div>
+        <button class="btn-secondary" id="logoutBtn" type="button">Log out</button>
+      </section>
+    </main>
+
+    <footer class="foot">localhost &middot; secure-auth-system</footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
