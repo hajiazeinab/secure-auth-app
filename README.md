@@ -55,7 +55,7 @@ This project was designed with multiple layers of security to protect the authen
 
 The application follows a token-based authentication flow using JWT access tokens and rotating refresh tokens.
 
-1. Registration
+## 1. Registration
 
 User submits their email and password.
 
@@ -69,7 +69,7 @@ Hash Password with bcrypt
  ↓
 Store User in PostgreSQL
 
-### 2. Login
+## 2. Login
 
 User
  ↓
@@ -84,7 +84,7 @@ Generate Access Token + Refresh Token
 Return Authentication Response
 
 
-### 3. Accessing Protected Resources
+## 3. Accessing Protected Resources
 Client
  ↓
 Access Token
@@ -98,7 +98,7 @@ Authenticated User
 Return Protected Data
 
 
-### 4. Refreshing an Expired Session
+## 4. Refreshing an Expired Session
 
 When the short-lived access token expires:
 
@@ -115,7 +115,7 @@ Generate New Access Token
  ↓
 Continue Session
 
-### 5. Logout
+## 5. Logout
 User
  ↓
 Logout Request
@@ -125,7 +125,7 @@ Server Revokes Token
 Session Invalidated
 
 
-### 6. Password Reset
+## 6. Password Reset
 User
  ↓
 Password Reset Request
