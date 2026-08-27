@@ -55,7 +55,7 @@ This project was designed with multiple layers of security to protect the authen
 
 The application follows a token-based authentication flow using JWT access tokens and rotating refresh tokens.
 
-### 1. Registration
+1. Registration
 
 User submits their email and password.
 
@@ -85,7 +85,7 @@ Generate Access Token + Refresh Token
 Return Authentication Response
 
 
-3. Accessing Protected Resources
+### 3. Accessing Protected Resources
 Client
  ↓
 Access Token
