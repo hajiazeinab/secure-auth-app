@@ -59,7 +59,6 @@ The application follows a token-based authentication flow using JWT access token
 
 User submits their email and password.
 
-```text
 User
  ↓
 Registration Request
@@ -99,7 +98,7 @@ Authenticated User
 Return Protected Data
 
 
-4. Refreshing an Expired Session
+### 4. Refreshing an Expired Session
 
 When the short-lived access token expires:
 
@@ -116,7 +115,7 @@ Generate New Access Token
  ↓
 Continue Session
 
-5. Logout
+### 5. Logout
 User
  ↓
 Logout Request
@@ -126,7 +125,7 @@ Server Revokes Token
 Session Invalidated
 
 
-6. Password Reset
+### 6. Password Reset
 User
  ↓
 Password Reset Request
@@ -142,6 +141,7 @@ Set New Password
 Hash New Password with bcrypt
  ↓
 Update Account
+
 
 ## Testing & Security Validation
 
@@ -212,6 +212,15 @@ If the project includes a development script, it can be started with:
 
 npm run dev
 
+## Project Structure
+
+secure-auth-app/
+├── frontend/          # Frontend interface
+├── src/               # Backend application and authentication logic
+├── .gitignore         # Files excluded from version control
+├── package.json       # Project configuration and dependencies
+├── package-lock.json  # Locked dependency versions
+└── README.md          # Project documentation
 
 ## Endpoints
 
@@ -225,25 +234,23 @@ npm run dev
 | POST | `/api/auth/password-reset/confirm` | Complete a reset with `{ token, password }` |
 | GET | `/api/auth/me` | Current user — requires `Authorization: Bearer <accessToken>` |
 
-## What's stubbed, not shipped
+## Limitations
 
-Two things are deliberately left as integration points rather than built in,
-since they depend on infrastructure this project doesn't own:
+The following areas are intentionally outside the current scope of the project:
 
-- **Email delivery.** Verification and password-reset tokens are generated
-  and stored, but the `// In production: email ...` comments in
-  `authController.js` mark where you'd plug in a mail provider (Resend,
-  SendGrid, SES, etc.) instead of the current no-op.
-- **HTTPS termination.** `secure: true` on the refresh cookie assumes you're
-  behind TLS in production (`NODE_ENV=production`) — typically handled by a
-  reverse proxy or your hosting platform, not this codebase.
+- Email delivery for password resets is not connected to an external mail provider. Reset tokens are surfaced through the development interface.
+- HTTPS termination is not handled by the application itself and is assumed to be provided by a reverse proxy in a production deployment.
+- The current system focuses on authentication and does not include role-based authorization or an admin system.
+- The application was developed and tested in a local development environment.
 
-## Before using this in production
+## Future Improvements
 
-- Put the API behind HTTPS — the refresh cookie's `secure` flag depends on it.
-- Consider adding 2FA (TOTP) for higher-value accounts.
-- Add structured logging/alerting on repeated lockouts — that's a signal
-  worth watching, not just blocking.
-- Run `npm audit` periodically and keep `bcrypt`, `jsonwebtoken`, and
-  `express` patched.
-# secure-auth-app
+Potential improvements include:
+
+- Integrate a production email service for password-reset workflows.
+- Deploy the application behind HTTPS.
+- Add role-based access control (RBAC).
+- Add multi-factor authentication (MFA).
+- Improve automated security and integration testing.
+- Add security monitoring and authentication event logging.
+- Deploy the application to a production environment.
